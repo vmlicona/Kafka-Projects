@@ -1,0 +1,2 @@
+# Navigate to your Kafka installation directory
+kafka-topics --create --topic first-topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1

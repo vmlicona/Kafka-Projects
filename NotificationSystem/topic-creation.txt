@@ -1,0 +1,50 @@
+kafka-topics --create --topic user-notifications --bootstrap-server localhost:9092 --partitions 3 --replication-factor 1
+
+
+
+> Alter Topic
+
+# Increase partitions
+kafka-topics --alter --topic my-topic --partitions 5 --bootstrap-server localhost:9092
+
+# Change config
+kafka-configs --alter \
+  --topic my-topic \
+  --bootstrap-server localhost:9092 \
+  --add-config retention.ms=43200000
+
+
+> Check if Topic Exists before Deleting
+
+# First check if topic exists
+kafka-topics --list --bootstrap-server localhost:9092 | grep my-topic
+
+# Then delete if it exists
+kafka-topics --delete --topic my-topic --bootstrap-server localhost:9092
+
+
+> Describe specific topic
+
+# Describe specific topic
+kafka-topics --describe --topic my-topic --bootstrap-server localhost:9092
+
+# Describe all topics with details
+kafka-topics --describe --bootstrap-server localhost:9092
+
+
+> Example Workflow
+
+# List existing topics
+kafka-topics --list --bootstrap-server localhost:9092
+
+# Create a new topic
+kafka-topics --create --topic test-messages --bootstrap-server localhost:9092 --partitions 3 --replication-factor 1
+
+# Verify topic creation
+kafka-topics --describe --topic test-messages --bootstrap-server localhost:9092
+
+# Delete the topic
+kafka-topics --delete --topic test-messages --bootstrap-server localhost:9092
+
+# Verify deletion
+kafka-topics --list --bootstrap-server localhost:9092
